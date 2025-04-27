@@ -72,6 +72,8 @@ module.exports.getCalendarEvents = async (event) => {
   oAuth2Client.setCredentials({ access_token });
   
   return new Promise((resolve, reject)  => {
+    // 'getCalendarEvents' serverless function uses the 'calendar.events.list' endpoint
+    // (to verify how events data will be used in app) with the following parameters:
     calendar.events.list(
       {
         calendarId: CALENDAR_ID,

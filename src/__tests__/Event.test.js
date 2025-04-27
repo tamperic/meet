@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { getEvents } from '../api';
 import userEvent from '@testing-library/user-event';
 import Event from '../components/Event';
@@ -34,7 +34,7 @@ describe('<Event /> component', () => {
   test('shows the details section when the user clicks on the "More details" button', async () => {
     const user = userEvent.setup();
     const formattedEndDate = new Date(event.end.dateTime).toLocaleString();
-    const formattedCreatedDate = new Date(event.created).toLocaleString();
+    //const formattedCreatedDate = new Date(event.created).toLocaleString();
 
     await user.click(EventComponent.queryByText('More details'));
 
@@ -64,4 +64,3 @@ describe('<Event /> component', () => {
 
 });
 
-screen.debug();

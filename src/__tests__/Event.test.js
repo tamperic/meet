@@ -35,12 +35,14 @@ describe('<Event /> component', () => {
     const user = userEvent.setup();
     await user.click(EventComponent.queryByText('More details'));
 
-    // The test fails, the event might not have a 'description' or 'created' field while trying to check for elements that don't exist yet, beacuse "More details" hasn't been clicked yet.
+  
     const expectText = (text) => {
-      const element = EventComponent.queryByText(text);
+      const element = EventComponent.queryByText(text); // Try to find a DOM element in the rendered component that contains the given 'text'. If it finds returns HTMLELement, if not returns null.
+      
+      // Check if a matching element was found
       if (element) {
         expect(element).toBeInTheDocument();
-      }
+      } // If found, it runs the expectation, if not it skips expectation, avoiding test failures caused by trying to run '.toBeInTheDocument()' on 'null'
     };
 
     if (event.end?.dateTime) {
@@ -60,7 +62,6 @@ describe('<Event /> component', () => {
       const formattedCreatedDate = new Date(event.created).toLocaleString();
       expectText(formattedCreatedDate);
     }
-    
     
     expect(EventComponent.queryByText('More details')).not.toBeInTheDocument();
     expect(EventComponent.queryByText('Less details')).toBeInTheDocument();
@@ -97,7 +98,6 @@ describe('<Event /> component', () => {
       const formattedCreatedDate = new Date(event.created).toLocaleString();
       expectText(formattedCreatedDate);
     }
-    
     
     expect(EventComponent.queryByText('Less details')).not.toBeInTheDocument();
     expect(EventComponent.queryByText('More details')).toBeInTheDocument();

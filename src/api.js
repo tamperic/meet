@@ -13,12 +13,50 @@ export const extractLocations = (events) => {
 };
 
 
+// This function takes 'accessToken' and checks the token's validity
+const checkToken = async (accessToken) => {
+  const response = await fetch(
+    `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
+  );
+  const result = await response.json();
+  return result;
+};
+
 // This function will fetch the list of all events.
 export const getEvents = async () => {
-  return mockData;
+  // if using localhost return mock data, otherwise use the real API
+  if (window.location.href.startsWith('http://localhost')) {
+    return mockData;
+  }
+
+  // Then, check for an access token
+  const token = await getAccessToken();
+
+  // if token exists make a GET request to the Google Caolendar API to the "Upcoming Events" endpoint. If it doesn’t exist or is invalid, need to get a new one.
+  if (token) {
+    removeQuery(); // remove the code (query parameters) from the URL once finished with it
+    const url = "YOUR_GET_EVENTS_API_ENDPOINT" + "/" + token;
+    const response = await fetch(url);
+    const result = await response.json();
+    if (result) {
+      return result.events;
+    } else return null;
+  }
+};
+
+const removeQuery = () => {
+  let newurl;
+  if (window.history.pushState && window.location.pathname) {
+    newurl = window.location.protocol + "//" + window.location.host + window.location.pathname; // returns the web protocol used (http: or https:), path and filename of the current page
+    window.history.pushState("", "", newurl);
+  } else {
+    newurl = window.location.protocol + "//" + window.location.host;
+    window.history.pushState("", "", newurl);
+  }
 };
 
 
+// Getting Access Token
 export const getAccessToken = async () => {
   // The code checks whether an access token was found.
   const accessToken = localStorage.getItem('access_token');
@@ -43,3 +81,33 @@ export const getAccessToken = async () => {
   }
   return accessToken;
 };
+
+
+// Redirect users to log in with Google, so they can be redirected back to your site with the code
+const getToken = async (code) => {
+  const encodeCode = encodeURIComponent(code); // Encode the code that will be used to get token
+  const response = await fetch(
+    'YOUR_GET_ACCESS_TOKEN_ENDPOINT' + '/' + encodeCode
+  ); // Fetch new token on the code 
+  const { access_token } = await response.json();
+  access_token && localStorage.setItem("access_token", access_token);
+
+  return access_token;
+};
+
+// 'getToken' function with 'try..catch' statement
+// const getToken = async (code) => {
+//   try {
+//     const encodeCode = encodeURIComponent(code);
+ 
+//     const response = await fetch( 'YOUR_GET_ACCESS_TOKEN_ENDPOINT' + '/' + encodeCode);
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! status: ${response.status}`)
+//     }
+//     const { access_token } = await response.json();
+//     access_token && localStorage.setItem("access_token", access_token);
+//     return access_token;
+//   } catch (error) {
+//     error.json();
+//   }
+//  }

@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const CitySearch = ({ allLocations }) => {
+const CitySearch = ({ allLocations, setCurrentCity }) => {
 
   const [showSuggestions, setShowSuggestions] = useState(false); // The default value of 'showSuggestions' is false, because it's not wanted to be shown unless the input field is “in focus.”
   const [query, setQuery] = useState(""); // Local state for the input field so that its value can be accessed.
   const [suggestions, setSuggestions] = useState([]); // Local state which will hold the list of suggestions.
+
+  useEffect(() => {
+    setSuggestions(allLocations);
+  }, [`${allLocations}`]); // Used the stringified value of the 'allLocation' prop as a dependency. This way, if there’s a change in it (an empty array that gets filled), the 'useEffect' code will be re-executed again, ensuring that the local suggestions state is updated.
 
   // This function will be used as the callback function of 'onChange', which is why it has the 'event' parameter in it.
   const handleInputChanged = (event) => {
@@ -22,6 +26,7 @@ const CitySearch = ({ allLocations }) => {
     const value = event.target.textContent;
     setQuery(value);
     setShowSuggestions(false); // To hide the list.
+    setCurrentCity(value); // Update the 'handleItemClicked' function to call 'setCurrentCity' while passing the text content of the clicked suggestion item as the function’s argument to update the global state 'currentCity' of the 'App' component
   };
 
 

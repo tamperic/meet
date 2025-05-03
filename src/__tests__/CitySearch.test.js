@@ -1,14 +1,15 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CitySearch from '../components/CitySearch';
 import { extractLocations, getEvents } from '../api';
+import App from '../App';
 
 
 describe('<CitySearch /> component', () => {
   let CitySearchComponent;
   beforeEach(() => {
-    CitySearchComponent = render(<CitySearch />);
+    CitySearchComponent = render(<CitySearch allLocations={[]} />);
   });
 
 
@@ -66,7 +67,7 @@ describe('<CitySearch /> component', () => {
     const user = userEvent.setup();
     const allEvents = await getEvents(); 
     const allLocations = extractLocations(allEvents);
-    CitySearchComponent.rerender(<CitySearch allLocations={allLocations} />);
+    CitySearchComponent.rerender(<CitySearch allLocations={allLocations} setCurrentCity={()  => { }} />);
 
     const cityTextBox = CitySearchComponent.queryByRole('textbox');
     await user.type(cityTextBox, "Berlin");
@@ -78,4 +79,31 @@ describe('<CitySearch /> component', () => {
 
     expect(cityTextBox).toHaveValue(BerlinGermanySuggestion.textContent);
   });
+});
+
+describe('<CitySearch /> integration', () => {
+
+  test('renders suggestions list when the app is rendered', async () => {
+    const user = userEvent.setup();
+    const AppComponent = render(<App />);
+    const AppDOM = AppComponent.container.firstChild;
+ 
+ 
+    const CitySearchDOM = AppDOM.querySelector('#city-search');
+    const cityTextBox = within(CitySearchDOM).queryByRole('textbox');
+    await user.click(cityTextBox);
+ 
+ 
+    const allEvents = await getEvents();
+    const allLocations = extractLocations(allEvents);
+ 
+ 
+    const suggestionListItems = within(CitySearchDOM).queryAllByRole('listitem');
+    expect(suggestionListItems.length).toBe(allLocations.length + 1);
+    // or possible lso this way (using 'waitfor()'):
+    // await waitFor(() => {
+    //   const suggestionListItems = >within(CitySearchDOM).queryAllByRole('listitem');
+    //   expect(suggestionListItems.length).toBe(allLocations.length + 1);
+    //  });
+ });
 });

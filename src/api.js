@@ -35,7 +35,7 @@ export const getEvents = async () => {
   // if token exists make a GET request to the Google Caolendar API to the "Upcoming Events" endpoint. If it doesn’t exist or is invalid, need to get a new one.
   if (token) {
     removeQuery(); // remove the code (query parameters) from the URL once finished with it
-    const url = "YOUR_GET_EVENTS_API_ENDPOINT" + "/" + token;
+    const url = "https://bh96eida0l.execute-api.eu-central-1.amazonaws.com/dev/api/get-events" + "/" + token;
     const response = await fetch(url);
     const result = await response.json();
     if (result) {
@@ -71,7 +71,7 @@ export const getAccessToken = async () => {
     // If no authorization code is found (!code), the user is automatically redirected to the Google Authorization screen, where they can sign in and receive their code.
     if (!code) {
       const response = await fetch(
-        "YOUR_SERVERLESS_GET_AUTH_URL_ENDPOINT"
+        "https://bh96eida0l.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url"
       );
       const result = await response.json();
       const { authUrl } = result;
@@ -87,7 +87,7 @@ export const getAccessToken = async () => {
 const getToken = async (code) => {
   const encodeCode = encodeURIComponent(code); // Encode the code that will be used to get token
   const response = await fetch(
-    'YOUR_GET_ACCESS_TOKEN_ENDPOINT' + '/' + encodeCode
+    'https://bh96eida0l.execute-api.eu-central-1.amazonaws.com/dev/api/token' + '/' + encodeCode
   ); // Fetch new token on the code 
   const { access_token } = await response.json();
   access_token && localStorage.setItem("access_token", access_token);

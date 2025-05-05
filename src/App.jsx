@@ -4,6 +4,8 @@ import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberOfEvents';
 import { extractLocations, getEvents } from './api';
 
+import './App.css';
+
 const App = () => {
   const [events, setEvents] = useState([]);
   const [currentNOE, setCurrentNOE] = useState(32); 
@@ -13,7 +15,7 @@ const App = () => {
   //  Call 'fetchData' in 'useEffect()', because want the list to be populated as soon as the 'App' component is mounted.
   useEffect(() => {
     fetchData();
-  }, [currentCity]);  // the callback of 'useEffect' will be called whenever it detects a change in 'currentCity'. This callback calls 'fetchData()' inside it. This will keep the events list up to date!
+  }, [currentCity, currentNOE]);  // the callback of 'useEffect' will be called whenever it detects a change in 'currentCity'. This callback calls 'fetchData()' inside it. This will keep the events list up to date!
 
   // The 'events' state is currently empty. This function is sed to populate the 'events' state with the events list I’ll fetch.
   const fetchData = async () => {
@@ -27,7 +29,7 @@ const App = () => {
   return (
     <div className='App'>
       <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} />
-      <NumberOfEvents />
+      <NumberOfEvents setCurrentNOE={setCurrentNOE} />
       <EventList events={events} />
     </div>
   );

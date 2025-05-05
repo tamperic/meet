@@ -100,7 +100,7 @@ describe('<CitySearch /> integration', () => {
  
     const suggestionListItems = within(CitySearchDOM).queryAllByRole('listitem');
     expect(suggestionListItems.length).toBe(allLocations.length + 1);
-    // or possible lso this way (using 'waitfor()'):
+    // or possible also this way (using 'waitfor()'):
     // await waitFor(() => {
     //   const suggestionListItems = >within(CitySearchDOM).queryAllByRole('listitem');
     //   expect(suggestionListItems.length).toBe(allLocations.length + 1);

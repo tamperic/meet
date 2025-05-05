@@ -25,7 +25,7 @@ describe('<App /> component', () => {
   });
 });
 
-// This test involves checking whether clicking on one of the suggestions will display the correct list of events for the selected city (after typing sth. into the city text input box).
+// This test (between App.test.js/CitySearch.test.js/EventList.test.js) involves checking whether clicking on one of the suggestions will display the correct list of events for the selected city (after typing sth. into the city text input box).
 describe('<App /> integration', () => {
   test('renders a list of events matching the city selected by the user', async () => {
     // 'userEvent' is set, and the 'App' component and its DOM are mocked.

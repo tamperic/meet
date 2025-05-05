@@ -1,6 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
 
 body {
+  color: #141414;
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
@@ -37,6 +38,7 @@ input[type="number"] {
   border-radius: 4px;
   outline: none;
   border: 1px solid #ccc;
+  background-color: #f9fafb;
   font-size: 14px;
   line-height: 20px;
   align-self: center;

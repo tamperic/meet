@@ -23,7 +23,7 @@ const Event = ({ event }) => {
         </>
       )}
 
-      <button className="details-btn" onClick={handleToggleDetails}>{ isCollapsed ? 'More details' : 'Less details' }</button>
+      <button onClick={handleToggleDetails}>{ isCollapsed ? 'More details' : 'Less details' }</button>
     </div>
   );
 };

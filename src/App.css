@@ -96,7 +96,7 @@ input[type="number"]:focus {
 }
 
 .suggestions > li:hover {
-  opacity: 0.8;
+  background-color: #49605f;
 }
 
 .event {

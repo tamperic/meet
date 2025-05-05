@@ -35,7 +35,7 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
       <label>Choose your nearest city:</label>
       <input 
         type="text" 
-        className="city" 
+        className="city-input" 
         placeholder="Search for a city" 
         value={query} 
         onFocus={() => setShowSuggestions(true)} 

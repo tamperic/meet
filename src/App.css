@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
 
 body {
-  color: #141414;
+  color: #272727;
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
@@ -39,6 +39,7 @@ input[type="number"] {
   outline: none;
   border: 1px solid #ccc;
   background-color: #fff;
+  color: #272727;
   font-size: 14px;
   line-height: 20px;
   align-self: center;
@@ -54,11 +55,11 @@ input[type="number"]:focus {
   box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
 }
 
-.city {
+.city-input, .number-input {
   width: 250px;
 }
 
-#city-search {
+#city-search, #number-of-events {
   display: flex;
   flex-direction: column;
   margin: auto;

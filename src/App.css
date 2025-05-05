@@ -1,5 +1,19 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f9fafb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
 .App {
+  width: 100%;
+  max-width: 800px;
   text-align: center;
   padding: 2% 5%;
 }
@@ -27,7 +41,15 @@ input[type="number"] {
   line-height: 20px;
   align-self: center;
   height: 38px;
+  width: 250px;
   margin-bottom: 20px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  border-color: #66afe9;
+  box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
 }
 
 .city {
@@ -39,6 +61,7 @@ input[type="number"] {
   flex-direction: column;
   margin: auto;
   position: relative;
+  align-items: center;
 }
 
 .suggestions {
@@ -49,14 +72,18 @@ input[type="number"] {
   align-self: center;
   margin: 0;
   font-size: 14px;
-  box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  background-color: #fff;
+  overflow: hidden;
 }
 
 .suggestions > li {
   text-align: left;
   padding: 8px 6px 8px 10px;
-  background-color: #eee;
+  background-color: #fafafa;
   cursor: default;
+  transition: background-color 0.2s;
 }
 
 .suggestions > li:last-child {
@@ -65,7 +92,7 @@ input[type="number"] {
 }
 
 .suggestions > li:hover {
-  background-color: #bcdcdb;
+  background-color: #e0f7fa;
 }
 
 .event {
@@ -73,7 +100,9 @@ input[type="number"] {
   margin-bottom: 10px;
   text-align: left;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  border-radius: 8px;
   position: relative;
 }
 
@@ -85,4 +114,11 @@ input[type="number"] {
   border-radius: 4px;
   outline: none;
   cursor: pointer;
+  background-color: #e0f2f1;
+  border: none;
+  transition: background-color 0.2s;
+}
+
+.details-btn:hover {
+  background-color: #b2ebf2;
 }

@@ -84,7 +84,7 @@ input[type="number"]:focus {
 .suggestions > li {
   text-align: left;
   padding: 8px 6px 8px 10px;
-  background-color: #496765;
+  background-color: #3a4c4b;
   color: #fff;
   cursor: default;
   transition: background-color 0.2s;
@@ -96,7 +96,7 @@ input[type="number"]:focus {
 }
 
 .suggestions > li:hover {
-  background-color: #e0f7fa;
+  opacity: 0.8;
 }
 
 .event {
@@ -114,7 +114,6 @@ input[type="number"]:focus {
   position: absolute;
   right: 10px;
   bottom: 10px;
-  top: 10px;
   padding: 6px 12px;
   border-radius: 4px;
   outline: none;

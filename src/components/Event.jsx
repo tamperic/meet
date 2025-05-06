@@ -16,11 +16,11 @@ const Event = ({ event }) => {
       <p><strong>Location:</strong> {event.location}</p>
       <p><strong>Start:</strong> {new Date(event.start.dateTime).toLocaleString()}</p>
       {!isCollapsed && (
-        <>
+        <div className="event-details" data-testid="event-details">
           <p><strong>End:</strong> {new Date(event.end.dateTime).toLocaleString()}</p>
           <p><strong>Description:</strong> {event.description}</p>
           <p><strong>{event.creator.email}</strong> has created this event on {new Date(event.created).toLocaleString()}</p>
-        </>
+        </div>
       )}
 
       <button className="details-btn" onClick={handleToggleDetails}>{ isCollapsed ? 'More details' : 'Less details' }</button>

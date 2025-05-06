@@ -4,7 +4,9 @@
 
 - **PWA (Progressive Web Application)**: Instant loading, offline support, push notifications, "add to home screen" prompt, responsive design, and cross-platform compatibility.  
 - **Serverless**: No backend maintenance, easy to scale, always available, no cost for idle time.  
-- **TDD (Test-Driven Development) approach**: Tests written before the actual functionality in code.  
+- **TDD (Test-Driven Development) approach**: For unit and integration testing.  
+- **BDD (Behavior-Drive Development) approach**: For acceptance testing easy to read and find even by non-developer stakeholders.
+- **End-to-End Testing**: For this was used **Puppeteer** framework.
 - **React**: Used to build the application.  
 - **Google Calendar API**: Used to fetch upcoming events.  
 

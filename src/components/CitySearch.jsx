@@ -22,7 +22,7 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
   
     let infoText;
     if (filteredLocations.length === 0) {
-      infoText = "The city you are looking for could not be found. Please try another city."
+      infoText = "The city you are looking for could not be found. Please try another city.";
     } else {
       infoText = "";
     }

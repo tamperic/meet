@@ -3,6 +3,7 @@ import EventList from './components/EventList';
 import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberOfEvents';
 import { extractLocations, getEvents } from './api';
+import { InfoAlert } from './components/Alert';
 
 import './App.css';
 
@@ -11,6 +12,7 @@ const App = () => {
   const [currentNOE, setCurrentNOE] = useState(32); 
   const [allLocations, setAllLocations] = useState([]);
   const [currentCity, setCurrentCity] = useState("See all cities"); // Represents the value of the queried local state that’s in 'CitySearch.js' once the user selects one of the suggestion items.
+  const [infoAlert, setInfoAlert] = useState("");
 
   //  Call 'fetchData' in 'useEffect()', because want the list to be populated as soon as the 'App' component is mounted.
   useEffect(() => {
@@ -28,7 +30,13 @@ const App = () => {
 
   return (
     <div className='App'>
-      <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} />
+      <div className='alerts-container'>
+        {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
+      </div>
+      <CitySearch 
+        allLocations={allLocations} 
+        setCurrentCity={setCurrentCity} 
+        setInfoAlert={setInfoAlert}/>
       <NumberOfEvents setCurrentNOE={setCurrentNOE} />
       <EventList events={events} />
     </div>

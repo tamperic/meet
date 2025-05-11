@@ -9,7 +9,12 @@ import App from '../App';
 describe('<CitySearch /> component', () => {
   let CitySearchComponent;
   beforeEach(() => {
-    CitySearchComponent = render(<CitySearch allLocations={[]} />);
+    CitySearchComponent = render(
+    <CitySearch 
+      allLocations={[]} 
+      setCurrentCity={() => { }}
+      setInfoAlert={() => { }}
+    />);
   });
 
 
@@ -43,7 +48,13 @@ describe('<CitySearch /> component', () => {
     const user = userEvent.setup();
     const allEvents = await getEvents(); // This variable contains the list of all events by calling the asynchronous function 'getEvents'.
     const allLocations = extractLocations(allEvents); // 'allLocations' contains the set of all possible distinct locations that will be extracted from 'allEvents'. This extraction is done by using a function 'extractLocations'.
-    CitySearchComponent.rerender(<CitySearch allLocations={allLocations} />); // The 'CitySearch' mock component has been re-rendered as a way to overwrite the original 'CitySearchComponent', but this time it has a new prop ('allLocations') passed to it.
+    CitySearchComponent.rerender(
+      <CitySearch 
+      allLocations={allLocations} 
+      setCurrentCity={()  => { }} 
+      setInfoAlert={() => { }} 
+      />
+    ); // The 'CitySearch' mock component has been re-rendered as a way to overwrite the original 'CitySearchComponent', but this time it has a new prop ('allLocations') passed to it.
 
     // user types "Berlin" in city textbox
     const cityTextBox = CitySearchComponent.queryByRole('textbox');
@@ -67,7 +78,13 @@ describe('<CitySearch /> component', () => {
     const user = userEvent.setup();
     const allEvents = await getEvents(); 
     const allLocations = extractLocations(allEvents);
-    CitySearchComponent.rerender(<CitySearch allLocations={allLocations} setCurrentCity={()  => { }} />);
+    CitySearchComponent.rerender(
+      <CitySearch 
+        allLocations={allLocations} 
+        setCurrentCity={()  => { }} 
+        setInfoAlert={() => { }} 
+      />
+    );
 
     const cityTextBox = CitySearchComponent.queryByRole('textbox');
     await user.type(cityTextBox, "Berlin");

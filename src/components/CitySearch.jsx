@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const CitySearch = ({ allLocations, setCurrentCity }) => {
+const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
 
   const [showSuggestions, setShowSuggestions] = useState(false); // The default value of 'showSuggestions' is false, because it's not wanted to be shown unless the input field is “in focus.”
   const [query, setQuery] = useState(""); // Local state for the input field so that its value can be accessed.
@@ -19,6 +19,14 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
 
     setQuery(value); // Then sets the 'Query' local state to whatever the input value is.
     setSuggestions(filteredLocations); // Finally sets the 'suggestions' local state to the filtered locations array.
+  
+    let infoText;
+    if (filteredLocations.length === 0) {
+      infoText = "The city you are looking for could not be found. Please try another city."
+    } else {
+      infoText = "";
+    }
+    setInfoAlert(infoText);
   };
 
   // This function uses in the onClick event handler of the suggestion list item (<li>).
@@ -27,6 +35,7 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
     setQuery(value);
     setShowSuggestions(false); // To hide the list.
     setCurrentCity(value); // Update the 'handleItemClicked' function to call 'setCurrentCity' while passing the text content of the clicked suggestion item as the function’s argument to update the global state 'currentCity' of the 'App' component
+    setInfoAlert("");
   };
 
 

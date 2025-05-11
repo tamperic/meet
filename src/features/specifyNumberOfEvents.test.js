@@ -51,7 +51,7 @@ defineFeature(feature, test => {
             AppDOM = AppComponent.container.firstChild;
 
             const NumberOfEventsDOM = AppDOM.querySelector('#number-of-events');
-            const NumberOfEventsInput = within(NumberOfEventsDOM).queryByPlaceholderText('32 events shown by default');
+            const NumberOfEventsInput = within(NumberOfEventsDOM).queryByPlaceholderText('Filter events by number');
             
             await user.clear(NumberOfEventsInput); 
             await user.type(NumberOfEventsInput, '10');

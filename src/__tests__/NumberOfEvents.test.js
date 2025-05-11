@@ -18,21 +18,21 @@ describe('<NumberOfEvents /> component', () => {
   
   
   test('renders number input', () => {
-    const numberBox = NumberOfEventsComponent.queryByPlaceholderText('32 events shown by default');
+    const numberBox = NumberOfEventsComponent.queryByPlaceholderText('Filter events by number');
     expect(numberBox).toBeInTheDocument();
     expect(numberBox).toHaveClass('number-input');
   });
 
 
   test('renders 32 events by default', () => {
-    const numberBox = NumberOfEventsComponent.queryByPlaceholderText('32 events shown by default');
+    const numberBox = NumberOfEventsComponent.queryByPlaceholderText('Filter events by number');
     expect(numberBox).toHaveValue(32);
   });
 
 
   test('updates list of events when user types in the numberbox', async () => {
     const user = userEvent.setup();
-    const numberBox = NumberOfEventsComponent.queryByPlaceholderText('32 events shown by default'); 
+    const numberBox = NumberOfEventsComponent.queryByPlaceholderText('Filter events by number'); 
 
     // user types 10 in textbox 
     await user.clear(numberBox); // Delete the current input value
@@ -50,7 +50,7 @@ describe('<NumberOfEvents /> integration', () => {
     const AppDOM = AppComponent.container.firstChild;
 
     const NumberOfEventsDOM = AppDOM.querySelector('#number-of-events');
-    const NumberOfEventsInput = within(NumberOfEventsDOM).queryByPlaceholderText('32 events shown by default');
+    const NumberOfEventsInput = within(NumberOfEventsDOM).queryByPlaceholderText('Filter events by number');
 
     await user.clear(NumberOfEventsInput); 
     await user.type(NumberOfEventsInput, '10');

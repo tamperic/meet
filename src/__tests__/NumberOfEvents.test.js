@@ -7,6 +7,13 @@ import App from '../App';
 describe('<NumberOfEvents /> component', () => {
   let NumberOfEventsComponent;
   beforeEach(() => {
+    NumberOfEventsComponent = render(
+      <NumberOfEvents 
+        setCurrentNOE={() => { }} 
+        setErrorAlert={() => { }}
+        setInfoAlert={() => { }}
+      />
+    );
   });
   
   

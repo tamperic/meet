@@ -3,7 +3,7 @@ import EventList from './components/EventList';
 import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberOfEvents';
 import { extractLocations, getEvents } from './api';
-import { InfoAlert, ErrorAlert } from './components/Alert';
+import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alert';
 
 import './App.css';
 
@@ -14,9 +14,18 @@ const App = () => {
   const [currentCity, setCurrentCity] = useState("See all cities"); // Represents the value of the queried local state that’s in 'CitySearch.js' once the user selects one of the suggestion items.
   const [infoAlert, setInfoAlert] = useState("");
   const [errorAlert, setErrorAlert] = useState("");
+  const [warningAlert, setWarningAlert] = useState("");
 
   //  Call 'fetchData' in 'useEffect()', because want the list to be populated as soon as the 'App' component is mounted.
   useEffect(() => {
+    // Check the value of 'navigator.onLine'
+    let warningText;
+    if (navigator.onLine) {
+      warningText = "";
+    } else {
+      warningText = "You are currently using the app offline by getting data from the local storage.";
+    }
+    setWarningAlert(warningText);
     fetchData();
   }, [currentCity, currentNOE]);  // the callback of 'useEffect' will be called whenever it detects a change in 'currentCity'. This callback calls 'fetchData()' inside it. This will keep the events list up to date!
 
@@ -34,6 +43,7 @@ const App = () => {
       <div className='alerts-container'>
         {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
         {errorAlert.length ? <ErrorAlert text={errorAlert} /> : null}
+        {warningAlert.length ? <WarningAlert text={warningAlert} /> : null}
       </div>
       <CitySearch 
         allLocations={allLocations} 

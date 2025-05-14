@@ -7,9 +7,9 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
   const [suggestions, setSuggestions] = useState([]); // Local state which will hold the list of suggestions.
 
   useEffect(() => {
-    setSuggestions(allLocations);
-  }, [`${allLocations}`]); // Used the stringified value of the 'allLocation' prop as a dependency. This way, if there’s a change in it (an empty array that gets filled), the 'useEffect' code will be re-executed again, ensuring that the local suggestions state is updated.
-
+    setSuggestions(Array.isArray(allLocations) ? allLocations : []);
+  }, [allLocations]);
+  
   // This function will be used as the callback function of 'onChange', which is why it has the 'event' parameter in it.
   const handleInputChanged = (event) => {
     const value = event.target.value; // The function obtains the current value of the input field. 

@@ -8,13 +8,20 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
+    "deploy": "node --version",
     "test": "NODE_NO_WARNINGS=1 jest"
   },
   "dependencies": {
     "atatus-spa": "^4.6.4",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "vite-plugin-pwa": "^1.0.0",
+    "workbox-core": "^7.3.0",
+    "workbox-expiration": "^7.3.0",
+    "workbox-precaching": "^7.3.0",
+    "workbox-routing": "^7.3.0",
+    "workbox-strategies": "^7.3.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.26.9",

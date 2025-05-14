@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { ErrorAlert } from "./Alert";
 
 
 const NumberOfEvents = ({ setCurrentNOE, setErrorAlert, setInfoAlert }) => {
   const [defaultNumber, setDefaultNumber] = useState(32);
+  const [error, setError] = useState("");
 
   const handleInputChanged = (event) => {
     const value = event.target.value; // The function obtains the current value of the input field.
@@ -23,6 +25,8 @@ const NumberOfEvents = ({ setCurrentNOE, setErrorAlert, setInfoAlert }) => {
     } else {
       errorText = "";
     }
+
+    setError(errorText); 
     setErrorAlert(errorText);
   };
 
@@ -37,6 +41,7 @@ const NumberOfEvents = ({ setCurrentNOE, setErrorAlert, setInfoAlert }) => {
         value={defaultNumber} 
         onChange={handleInputChanged}
       />
+      {error && <ErrorAlert text={error} />}
     </div>
   );
 };

@@ -11,7 +11,7 @@ const CityEventsChart = ({ events, allLocations }) => {
     const getData = () => {
         const data = allLocations.map((location) => {
             const count = events.filter((event) => event.location === location).length; // Filter the events by each location to get the length of the resulting array. Use that length value as the event count for the location.
-            const city = location.split(', ')[0]; // To get the city out of each location in 'allLocations', it's needed to remove unnecessary information so that it only has a city name. Return an array ("CITY", "COUNTRY").
+            const city = location.split((/, | - /))[0]; // To get the city out of each location in 'allLocations', it's needed to remove unnecessary information so that it only has a city name. Return an array ("CITY", "COUNTRY").
             return { city, count };
         })
         return data;

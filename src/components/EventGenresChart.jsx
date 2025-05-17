@@ -23,23 +23,26 @@ const EventGenresChart = ({ events }) => {
         return data;
     }
 
-    const renderCustomizedLabel = ({ cx, cy, midAngle, outerRadius, percent, index }) => {
+    const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
         const RADIAN = Math.PI / 180;
-        const radius = outerRadius;
-        const x = cx + radius * Math.cos(-midAngle * RADIAN) * 1.07;
-        const y = cy + radius * Math.sin(-midAngle * RADIAN) * 1.07;
-        return percent ? (
+        const radius = innerRadius + (outerRadius - innerRadius) * 0.5; // halfway between inner and outer radius
+        const x = cx + radius * Math.cos(-midAngle * RADIAN);
+        const y = cy + radius * Math.sin(-midAngle * RADIAN);
+      
+        return percent > 0 ? (
           <text
             x={x}
             y={y}
-            fill={colors[index % colors.length]} 
-            textAnchor={x > cx ? 'start' : 'end'}
+            fill="#ffffff"
+            textAnchor="middle"
             dominantBaseline="central"
+            fontSize={14}
+            fontWeight="bold"
           >
             {`${(percent * 100).toFixed(0)}%`}
           </text>
         ) : null;
-    };
+    };      
 
     return (
         <ResponsiveContainer width="99%" height={400}>
@@ -51,6 +54,7 @@ const EventGenresChart = ({ events }) => {
                     labelLine={false}
                     label={renderCustomizedLabel}
                     outerRadius={150}
+                    innerRadius={60}
                 >
                     {data.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={colors[index]}/>

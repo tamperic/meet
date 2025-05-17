@@ -19,7 +19,7 @@ const Event = ({ event }) => {
         <div className="event-details" data-testid="event-details">
           <p><strong>End:</strong> {new Date(event.end.dateTime).toLocaleString()}</p>
           <p><strong>Description:</strong> {event.description}</p>
-          <p><strong>{event.creator.email}</strong> has created this event on {new Date(event.created).toLocaleString()}</p>
+          <p><strong>{event.creator.email}</strong> has created this event on {new Date(event.created).toLocaleString()}.</p>
         </div>
       )}
 

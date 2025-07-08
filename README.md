@@ -1,14 +1,36 @@
 # **Meet App**
 
-## Approach
+## Project Desription
 
-- **PWA (Progressive Web Application)**: Instant loading, offline support, push notifications, "add to home screen" prompt, responsive design, and cross-platform compatibility.  
+**Meet App** is a serverless, progressive web application (**PWA**) built with **React** that uses the **Google Calendar API** to fetch and display upcoming tech events. 
+
+---
+
+##  Features
+
+- Filter events by city
+- Show/hide event details
+- Specify number of displayed events
+- Use app offline with cached data
+- Add app shortcut to home screen
+- Display charts visualizing event stats
+
+---
+
+## Tech Stack
+
+- **React**: Used to build the application.
+- **JavaScript**
 - **Serverless**: No backend maintenance, easy to scale, always available, no cost for idle time.  
-- **TDD (Test-Driven Development) approach**: For unit and integration testing.  
-- **BDD (Behavior-Drive Development) approach**: For acceptance testing easy to read and find even by non-developer stakeholders.
-- **End-to-End Testing**: For this was used **Puppeteer** framework.
-- **React**: Used to build the application.  
-- **Google Calendar API**: Used to fetch upcoming events.  
+- **Jest** - JavaScript testing framework: <br/>
+  - **TDD (Test-Driven Development) approach**: For unit and integration testing.  <br/>
+  - **BDD (Behavior-Drive Development) approach**: For acceptance testing easy to read and find even by non-developer stakeholders.
+- **Google Calendar API**: Used to fetch upcoming tech events.  
+- **Recharts**: A data visualization library.
+- **Atatus**: For performance monitoring.
+- **AWS Lambda**: For serverless backend - no backend maintenance and using a traditional server.
+- **OAuth2**: For user authentication.
+- Deployed on **GitHub Pages**.
 
 ---
 
@@ -113,3 +135,33 @@
   - **Then** - The user should see a chart visualizing the number of upcoming events in each city  
 
 ---
+
+## Geting Started
+
+### Prerequisites
+
+Install dependencies `npm install`.
+
+### Installation
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/tamperic/meet.git
+   
+2. Navigate to the project:
+    ```bash
+    cd meet
+
+3. Run the following command to start the server:
+    ```bash
+    npm start
+
+4. Open the app in browser at localhost.
+
+
+---
+
+## Live Demo
+
+Check out the **Meet** app deployed on GitHub Pages: <br/>
+[Meet Live Demo](https://tamperic.github.io/meet/)
